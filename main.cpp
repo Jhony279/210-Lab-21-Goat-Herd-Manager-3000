@@ -3,6 +3,8 @@
 #include <iostream>
 using namespace std;
 
+const int LS_MAX = 20, LS_MIN = 5;
+
 class Goat {
     private:
         int age;
@@ -129,7 +131,10 @@ public:
 
     void print() {
         Node* current = head;
-        if (!current) return;
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
         while (current) {
             cout << "   ";
             current->data.Print();
@@ -140,7 +145,10 @@ public:
 
     void print_reverse() {
         Node* current = tail;
-        if (!current) return;
+        if (!current) {
+            cout << "List is empty." << endl;
+            return;
+        }
         while (current) {
             cout << "   ";
             current->data.Print();
@@ -163,5 +171,6 @@ public:
  * @return 
 */
 int main() {
+    DoublyLinkedList goatList;
     return 0;
 }
