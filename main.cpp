@@ -172,9 +172,15 @@ public:
 */
 int main() {
     DoublyLinkedList goatList;
+    srand(time(0));
     int size = rand() % (LS_MAX - LS_MIN + 1) + LS_MIN; // Random size between LS_MIN and LS_MAX
 
     for (int i = 0; i < size; i++)
         goatList.push_back(Goat());
+    cout << "List forward: " << endl;
+    goatList.print();
+
+    cout << "List backward: " << endl;
+    goatList.print_reverse();
     return 0;
 }
