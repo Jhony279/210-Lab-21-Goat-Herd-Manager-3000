@@ -57,7 +57,7 @@ public:
         }
     }
 
-    void push_front(int value) {
+    void push_front(Goat G) {
         Node* newNode = new Node(value);
         if (!head)  // if there's no head, the list is empty
             head = tail = newNode;
