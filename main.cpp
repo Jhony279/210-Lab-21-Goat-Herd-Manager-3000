@@ -172,5 +172,9 @@ public:
 */
 int main() {
     DoublyLinkedList goatList;
+    int size = rand() % (LS_MAX - LS_MIN + 1) + LS_MIN; // Random size between LS_MIN and LS_MAX
+
+    for (int i = 0; i < size; i++)
+        goatList.push_back(Goat());
     return 0;
 }
