@@ -12,8 +12,8 @@ class Goat {
         string color;
         string names[15] = {"Billy", "Nanny", "Gruff", "Baa", "Goaty", "Capra", "Cheese"
             , "Horny", "Bleat", "Moo", "Fuzzy", "Woolly", "Cloven", "Pygmy", "Alpine"};
-        string colors[15] = {"White", "Black", "Brown", "Gray", "Violet", "Orange"
-            , "Golden", "Silver", "Cream", "Tan", "Red", "Blue", "Green", "Yellow", "Pink"};
+        string colors[15] = {"White", "Black", "Brown", "Gray", "Violet", "Orange", 
+            "Golden", "Silver", "Cream", "Tan", "Red", "Blue", "Green", "Yellow", "Pink"};
     public:
         Goat(){
             age = rand() % 20 + 1; // Random age between 1 and 20
@@ -28,8 +28,11 @@ class Goat {
         }
 
         void Print() {
-            cout << name << " (" << color << "," << age << ")" << endl;
+            cout << name << " (" << color << ", " << age << ")" << endl;
         }
+
+        int getAge() { return age; }
+        string getName() { return name; }
 };
 
 class DoublyLinkedList {
@@ -105,29 +108,30 @@ public:
         temp->next = newNode;
     }
 
-    // void delete_node(Goat value) {
-    //     if (!head) return; // Empty list
+    void delete_node(Goat value) {
+        if (!head) return; // Empty list
 
-    //     Node* temp = head;
-    //     while (temp && temp->data != value)
-    //         temp = temp->next;
+        Node* temp = head;
+        while (temp && temp->data.getAge() != value.getAge() && 
+                temp->data.getName() != value.getName())
+            temp = temp->next;
 
-    //     if (!temp) return; // Value not found
+        if (!temp) return; // Value not found
 
-    //     if (temp->prev) {
-    //         temp->prev->next = temp->next;
-    //     } else {
-    //         head = temp->next; // Deleting the head
-    //     }
+        if (temp->prev) {
+            temp->prev->next = temp->next;
+        } else {
+            head = temp->next; // Deleting the head
+        }
 
-    //     if (temp->next) {
-    //         temp->next->prev = temp->prev;
-    //     } else {
-    //         tail = temp->prev; // Deleting the tail
-    //     }
+        if (temp->next) {
+            temp->next->prev = temp->prev;
+        } else {
+            tail = temp->prev; // Deleting the tail
+        }
 
-    //     delete temp;
-    // }
+        delete temp;
+    }
 
     void print() {
         Node* current = head;
@@ -173,7 +177,7 @@ public:
 int main() {
     DoublyLinkedList goatList;
     srand(time(0));
-    int size = rand() % (LS_MAX - LS_MIN + 1) + LS_MIN; // Random size between LS_MIN and LS_MAX
+    int size = rand() % (LS_MAX - LS_MIN + 1) + LS_MIN; 
 
     for (int i = 0; i < size; i++)
         goatList.push_back(Goat());
@@ -182,5 +186,10 @@ int main() {
 
     cout << "List backward: " << endl;
     goatList.print_reverse();
+    
+    cout << "Deleting list, then trying to print.\n";
+    goatList.~DoublyLinkedList();
+    cout << "List forward: ";
+    goatList.print();
     return 0;
 }
