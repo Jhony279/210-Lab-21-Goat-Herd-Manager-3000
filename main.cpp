@@ -171,8 +171,8 @@ public:
 };
 
 /**
- * @brief - Description of main
- * @return 
+ * @brief Demonstrates the use of a doubly linked list to store and manage a 
+ *        collection of Goat objects.
 */
 int main() {
     DoublyLinkedList goatList;
